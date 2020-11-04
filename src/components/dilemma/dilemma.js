@@ -12,7 +12,7 @@ const Dilemma = () => {
   //const { firstOption, secondOption } = chosenQuestion;
   const firstOption = chosenQuestion
     ? chosenQuestion.firstOption
-    : "Woooww... Dilemalar bitti";
+    : "Woooww... Dilemmalar bitti";
   const secondOption = chosenQuestion
     ? chosenQuestion.secondOption
     : "Öneri kısmından dilemalarınızı gönderebilirsiniz";

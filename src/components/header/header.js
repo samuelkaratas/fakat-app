@@ -14,7 +14,7 @@ const Header = () => (
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="/suggest">Dilema Gönder</Nav.Link>
+          <Nav.Link href="/suggest">Dilemma Gönder</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
