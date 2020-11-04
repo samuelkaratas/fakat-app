@@ -15,7 +15,7 @@ const Dilemma = () => {
     : "Woooww... Dilemmalar bitti";
   const secondOption = chosenQuestion
     ? chosenQuestion.secondOption
-    : "Öneri kısmından dilemalarınızı gönderebilirsiniz";
+    : "Öneri kısmından dilemmalarınızı gönderebilirsiniz";
   //console.log(chosenQuestion);
   return firstOption ? (
     <div className="dilemma-container">
