@@ -1,0 +1,11 @@
+.form-container {
+    width: 80vw;
+    margin-top: 15px;
+}
+
+.button-container  {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

@@ -1,0 +1,8 @@
+.next-button-container {
+    width: 80vw;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+}

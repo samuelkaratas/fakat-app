@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+
+import "./App.css";
+
+import Header from "./components/header/header";
+
+import Homepage from "./pages/homepage/homepage";
+import SuggestPage from "./pages/suggest/suggest";
+
+import { Switch, Route } from "react-router-dom";
+
+import {
+  initializeDilemmas,
+  getQuestion,
+} from "./redux/question/question.actions";
+import { useDispatch } from "react-redux";
+
+import { readSuggestions } from "./firebase/firebase";
 
 function App() {
+  const dispatch = useDispatch();
+  const dilemmas = readSuggestions();
+
+  useEffect(() => {
+    dilemmas.then(data => {
+      dispatch(initializeDilemmas(data));
+      dispatch(getQuestion());
+    })
+  }, [dispatch, dilemmas]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        <Route exact path="/suggest">
+          <SuggestPage />
+        </Route>
+      </Switch>
     </div>
   );
 }
