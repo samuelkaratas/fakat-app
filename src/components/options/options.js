@@ -15,16 +15,16 @@ import { selectChosenQuestion } from "../../redux/question/question.selectors";
 const Options = () => {
   const dispatch = useDispatch();
   const chosenQuestion = useSelector(selectChosenQuestion);
-  const {id, yesCount, noCount, firstOption, secondOption} = chosenQuestion ? chosenQuestion : '';
+  const {id} = chosenQuestion ? chosenQuestion : '';
 
   const yesClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, yesCount+1, noCount, firstOption, secondOption)
+    updateRatio(id, 1)
   };
 
   const noClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, yesCount, noCount+1, firstOption, secondOption)
+    updateRatio(id, 0)
   };
 
   if(chosenQuestion) {

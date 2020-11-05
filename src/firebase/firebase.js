@@ -52,19 +52,13 @@ export const readSuggestions = async () => {
   return docArray;
 };
 
-export const updateRatio = (id, yesCount, noCount, firstOption, secondOption) => {
-  db.collection("dilemmas")
-    .doc(id)
-    .set({
-      yesCount,
-      noCount,
-      firstOption,
-      secondOption
-    })
-    .then(function () {
-      //console.log("Document successfully written!");
-    })
-    .catch(function (error) {
-      //console.error("Error writing document: ", error);
-    });
+export const updateRatio = (id, yesOrNo) => {
+  const increment = firebase.firestore.FieldValue.increment(1);
+
+  const storyRef = db.collection("dilemmas").doc(id);
+  if (yesOrNo) {
+    storyRef.update({ yesCount: increment });
+  } else {
+    storyRef.update({ noCount: increment });
+  }
 };
