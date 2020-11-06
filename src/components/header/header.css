@@ -1,3 +1,12 @@
 .header-container {
     width: 100%;
 }
+
+.image-container {
+    width: 40px;
+    height: auto;
+}
+
+.p-tag {
+    font-size: 10px;
+}

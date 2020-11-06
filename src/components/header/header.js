@@ -2,15 +2,22 @@ import React from "react";
 
 import "./header.css";
 
-import { Home } from 'react-feather'
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 const Header = () => (
   <div className="header-container">
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/"><Home /></Navbar.Brand>
+      <Navbar.Brand href="/">
+        <div className="image-container">
+          <img
+            alt="logo"
+            src={require("./fakatlogo.PNG")}
+            width="100%"
+            height="100%"
+          />
+        </div>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
