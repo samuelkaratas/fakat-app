@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   showOptions: true,
   index: 0,
   shownDilemmas: [],
+  liked: undefined,
 };
 
 const questionReducer = (state = INITIAL_STATE, action) => {
@@ -21,6 +22,7 @@ const questionReducer = (state = INITIAL_STATE, action) => {
         ...state,
         chosenQuestion: state.questions[ind],
         index: ind,
+        liked: undefined,
       };
     case QuestionActionTypes.TOGGLE_OPTIONS:
       return {
@@ -32,6 +34,11 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       state.shownDilemmas.push(state.chosenQuestion);
       return {
         ...state,
+      };
+    case QuestionActionTypes.TOGGLE_LIKE:
+      return {
+        ...state,
+        liked: !state.liked,
       };
     default:
       return state;

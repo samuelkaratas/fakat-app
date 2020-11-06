@@ -16,3 +16,7 @@ export const toggleOptions = () => ({
 export const addDilemaToShown = () => ({
   type: QuestionActionTypes.ADD_DILEMA_TO_SHOWN,
 });
+
+export const toggleLike = () => ({
+  type: QuestionActionTypes.TOGGLE_LIKE,
+});

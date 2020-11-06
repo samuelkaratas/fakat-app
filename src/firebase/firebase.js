@@ -62,3 +62,15 @@ export const updateRatio = (id, yesOrNo) => {
     storyRef.update({ noCount: increment });
   }
 };
+
+export const updateLike = (id, yesOrNo) => {
+  const increment = firebase.firestore.FieldValue.increment(1);
+  const decrement = firebase.firestore.FieldValue.increment(-1);
+
+  const storyRef = db.collection("dilemmas").doc(id);
+  if (yesOrNo) {
+    storyRef.update({ liked: increment });
+  } else {
+    storyRef.update({ liked: decrement });
+  }
+}

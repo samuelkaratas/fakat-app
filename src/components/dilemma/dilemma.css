@@ -7,12 +7,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-h1 {
-  color: white;
+.fakat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
 }
 
-h2 {
+p {
   color: white;
+  font-size: 32px;
+}
+
+.like-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 800px) {
+  .dilemma-container {
+    width: 90vw;
+    height: 320px;
+    margin: 15px 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    font-size: 22px;
+  }
 }

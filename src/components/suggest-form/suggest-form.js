@@ -39,7 +39,7 @@ const SuggestForm = () => {
             onChange={handleChange}
           />
           <br />
-          <h2>FAKAT</h2>
+          <p>FAKAT</p>
           <br />
           <Form.Control
             name="secondOption"

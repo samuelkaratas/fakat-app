@@ -1,5 +1,7 @@
 import React from "react";
 
+import './homepage.css'
+
 import Dilemma from "components/dilemma/dilemma";
 import Options from "components/options/options";
 import Ratio from "components/ratio/ratio";
@@ -13,7 +15,7 @@ import { selectShowOptions } from "redux/question/question.selectors";
 const Homepage = () => {
   const showOptions = useSelector(selectShowOptions);
   return (
-    <div>
+    <div className='homepage-container'>
       <Dilemma />
       {showOptions ? <Options /> : <Ratio />}
       {showOptions ? null : <NextButton />}

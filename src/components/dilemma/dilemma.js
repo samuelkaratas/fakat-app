@@ -6,6 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { useSelector } from "react-redux";
 
 import { selectChosenQuestion } from "../../redux/question/question.selectors";
+import LikeButton from "components/like-button/like-button";
 
 const Dilemma = () => {
   const chosenQuestion = useSelector(selectChosenQuestion);
@@ -19,11 +20,16 @@ const Dilemma = () => {
   //console.log(chosenQuestion);
   return firstOption ? (
     <div className="dilemma-container">
-      <h2 className="first">{firstOption}</h2>
-      <br />
-      <h1 className="fakat">FAKAT</h1>
-      <br />
-      <h2 className="second">{secondOption}</h2>
+      <div className='fakat-container'>
+        <p className="first">{firstOption}</p>
+        <br />
+        <p className="fakat">FAKAT</p>
+        <br />
+        <p className="second">{secondOption}</p>
+      </div>
+      <div className="like-button">
+        <LikeButton />
+      </div>
     </div>
   ) : (
     <div className="dilemma-container">

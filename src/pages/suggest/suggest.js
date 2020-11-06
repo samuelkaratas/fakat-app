@@ -4,7 +4,7 @@ import SuggestForm from "../../components/suggest-form/suggest-form";
 
 const SuggestPage = () => (
   <div>
-    <h1>Önerinizi Gönderin</h1>
+    <p>Önerinizi Gönderin</p>
     <SuggestForm />
   </div>
 );

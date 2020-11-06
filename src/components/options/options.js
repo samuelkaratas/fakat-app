@@ -15,19 +15,19 @@ import { selectChosenQuestion } from "../../redux/question/question.selectors";
 const Options = () => {
   const dispatch = useDispatch();
   const chosenQuestion = useSelector(selectChosenQuestion);
-  const {id} = chosenQuestion ? chosenQuestion : '';
+  const { id } = chosenQuestion ? chosenQuestion : "";
 
   const yesClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, 1)
+    updateRatio(id, 1);
   };
 
   const noClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, 0)
+    updateRatio(id, 0);
   };
 
-  if(chosenQuestion) {
+  if (chosenQuestion) {
     return (
       <div className="options-container">
         <Button variant="outline-success" onClick={yesClickHandler}>
@@ -38,10 +38,9 @@ const Options = () => {
         </Button>
       </div>
     );
-  }else {
-    return (<div></div>)
+  } else {
+    return <div></div>;
   }
-  
 };
 
 export default Options;

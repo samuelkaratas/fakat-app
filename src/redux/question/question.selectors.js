@@ -11,3 +11,8 @@ export const selectShowOptions = createSelector(
   [selectQuestion],
   (question) => question.showOptions
 );
+
+export const selectLiked = createSelector(
+  [selectQuestion],
+  (question) => question.liked
+);
