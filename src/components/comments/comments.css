@@ -1,0 +1,26 @@
+.paragraph {
+    color: whitesmoke;
+    font-size: 18px;
+    text-align: start;
+}
+
+.username {
+    text-align: start;
+}
+
+.footer {
+    color: whitesmoke;
+    text-align: start;
+}
+
+.comments-container {
+    width: 90vw;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.card-container {
+    width: 100%;
+    margin-top: 5px;
+}

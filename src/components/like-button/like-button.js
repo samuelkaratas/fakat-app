@@ -26,12 +26,12 @@ const LikeButton = () => {
 
   useEffect(() => {
     if (liked) {
-      console.log("true state", liked);
+      //console.log("true state", liked);
       updateLike(id, 1)
     } else if (liked === undefined) {
-      console.log("undefined state", liked);
+      //console.log("undefined state", liked);
     } else {
-      console.log("false state", liked);
+      //console.log("false state", liked);
       updateLike(id, 0)
     }
   }, [liked, id]);

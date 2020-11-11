@@ -11,6 +11,7 @@ import {
   getQuestion,
   toggleOptions,
   addDilemaToShown,
+  getComments,
 } from "../../redux/question/question.actions";
 
 //import { readSuggestions } from "../../firebase/firebase";
@@ -22,12 +23,13 @@ const NextButton = () => {
     dispatch(addDilemaToShown());
     dispatch(toggleOptions());
     dispatch(getQuestion());
+    dispatch(getComments([]))
     //readSuggestions();
   };
 
   return (
     <div className="next-button-container">
-      <Button variant="outline-light" onClick={handleClick}>
+      <Button className="button" variant="outline-light" onClick={handleClick}>
         <ArrowRight />
       </Button>
     </div>

@@ -16,3 +16,8 @@ export const selectLiked = createSelector(
   [selectQuestion],
   (question) => question.liked
 );
+
+export const selectComments = createSelector(
+  [selectQuestion],
+  (question) => question.comments
+);

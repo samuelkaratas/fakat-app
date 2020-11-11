@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   index: 0,
   shownDilemmas: [],
   liked: undefined,
+  comments: [],
 };
 
 const questionReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,12 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         questions: action.payload,
+        chosenQuestion: {},
+        showOptions: true,
+        index: 0,
+        shownDilemmas: [],
+        liked: undefined,
+        comments: [],
       };
     case QuestionActionTypes.GET_QUESTION:
       const ind = Math.floor(Math.random() * state.questions.length);
@@ -39,6 +46,11 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         liked: !state.liked,
+      };
+    case QuestionActionTypes.GET_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload,
       };
     default:
       return state;

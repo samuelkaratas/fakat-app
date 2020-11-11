@@ -20,3 +20,8 @@ export const addDilemaToShown = () => ({
 export const toggleLike = () => ({
   type: QuestionActionTypes.TOGGLE_LIKE,
 });
+
+export const getComments = (commentsArray) => ({
+  type: QuestionActionTypes.GET_COMMENTS,
+  payload: commentsArray,
+});
