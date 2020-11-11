@@ -58,7 +58,7 @@ const SignIn = () => {
         <div className="buttons">
           <Button type="submit" variant="outline-light">
             {" "}
-            Giriş Yap{" "}
+            Giriş{" "}
           </Button>
         </div>
       </form>

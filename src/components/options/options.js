@@ -42,14 +42,12 @@ const Options = () => {
     return (
       <div className="options-container">
         <Button
-          className="button"
           variant="outline-success"
           onClick={yesClickHandler}
         >
           <Check />
         </Button>
         <Button
-          className="button"
           variant="outline-danger"
           onClick={noClickHandler}
         >

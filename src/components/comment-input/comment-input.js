@@ -56,6 +56,7 @@ const CommentForm = () => {
         />
         <InputGroup.Append>
           <Button
+            className="button"
             onClick={handleSubmit}
             disabled={comment.length === 0 ? true : false}
             type="submit"

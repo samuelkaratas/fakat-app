@@ -29,7 +29,7 @@ const NextButton = () => {
 
   return (
     <div className="next-button-container">
-      <Button className="button" variant="outline-light" onClick={handleClick}>
+      <Button variant="outline-light" onClick={handleClick}>
         <ArrowRight />
       </Button>
     </div>

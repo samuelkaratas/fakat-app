@@ -1,13 +1,17 @@
 .comment-form-container {
-    width: 80vw;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 80vw;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+    height: 38px;
 }
 
 @media screen and (max-width: 800px) {
-    .comment-form-container{
-        width: 90vw;
-    }
+  .comment-form-container {
+    width: 90vw;
+  }
 }
