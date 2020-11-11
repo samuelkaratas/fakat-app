@@ -121,13 +121,16 @@ export const postComment = (id, comment, name) => {
             comments: firebase.firestore.FieldValue.arrayUnion(
               commentStructure
             ),
-          });
+          }).then(() => {
+            resolve(true);
+          })
         } else {
           commentRef.set({
             comments: [commentStructure],
-          });
+          }).then(() => {
+            resolve(true);
+          })
         }
-        resolve(true);
       })
       .catch((err) => {
         console.log(err);
