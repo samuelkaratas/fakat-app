@@ -61,26 +61,39 @@ export const suggestDilemma = (firstOption, secondOption) => {
     });
 };
 
-export const readSuggestions = async () => {
+export const readSuggestions = async (userId) => {
   const docArray = [];
   const querySnapshot = await db.collection("dilemmas").get();
 
-  /*const a = await (await db.collection("suggestions").get()).size;
-  console.log(a);
-  const b = Math.round(Math.random() * a);
-  console.log(b);
-  const c = await (await db.collection("suggestions").get()).docs[b].data()
-  console.log(c);*/
-
   querySnapshot.forEach((doc) => {
     docArray.push({ ...doc.data(), id: doc.id });
-    //console.log(`${doc.id} => ${doc.data().firstOption} FAKAT ${doc.data().secondOption}`);
   });
-  //console.log("docArray", docArray);
+
+  if (userId) {
+    const userRef = await db.collection("users").doc(userId).get();
+    let seenDilemmas = userRef.data().seenDilemmas;
+
+    if (seenDilemmas) {
+      //console.log('seenDilemmas', seenDilemmas)
+      //console.log('docArray', docArray)
+      const reducedDocArray = docArray.filter((cur) => {
+        for (let i = 0; i < seenDilemmas.length; i++) {
+          if (cur.id === seenDilemmas[i]) {
+            seenDilemmas.splice(i, 1);
+            return false;
+          }
+        }
+        return true;
+      });
+
+      return reducedDocArray;
+    }
+  }
+
   return docArray;
 };
 
-export const updateRatio = (id, yesOrNo) => {
+export const updateRatio = (id, yesOrNo, userId) => {
   const increment = firebase.firestore.FieldValue.increment(1);
 
   const storyRef = db.collection("dilemmas").doc(id);
@@ -89,17 +102,40 @@ export const updateRatio = (id, yesOrNo) => {
   } else {
     storyRef.update({ noCount: increment });
   }
+
+  if (userId) {
+    var userRef = db.collection("users").doc(userId);
+
+    userRef.update({
+      seenDilemmas: firebase.firestore.FieldValue.arrayUnion(id),
+    });
+  }
 };
 
-export const updateLike = (id, yesOrNo) => {
+export const updateLike = (id, yesOrNo, userId) => {
   const increment = firebase.firestore.FieldValue.increment(1);
   const decrement = firebase.firestore.FieldValue.increment(-1);
 
+  if (userId) {
+    var userRef = db.collection("users").doc(userId);
+  }
+
   const storyRef = db.collection("dilemmas").doc(id);
+
   if (yesOrNo) {
     storyRef.update({ liked: increment });
+    if (userId) {
+      userRef.update({
+        favorites: firebase.firestore.FieldValue.arrayUnion(id),
+      });
+    }
   } else {
     storyRef.update({ liked: decrement });
+    if (userId) {
+      userRef.update({
+        favorites: firebase.firestore.FieldValue.arrayRemove(id),
+      });
+    }
   }
 };
 
@@ -117,19 +153,23 @@ export const postComment = (id, comment, name) => {
       .get()
       .then((docSnapshot) => {
         if (docSnapshot.exists) {
-          commentRef.update({
-            comments: firebase.firestore.FieldValue.arrayUnion(
-              commentStructure
-            ),
-          }).then(() => {
-            resolve(true);
-          })
+          commentRef
+            .update({
+              comments: firebase.firestore.FieldValue.arrayUnion(
+                commentStructure
+              ),
+            })
+            .then(() => {
+              resolve(true);
+            });
         } else {
-          commentRef.set({
-            comments: [commentStructure],
-          }).then(() => {
-            resolve(true);
-          })
+          commentRef
+            .set({
+              comments: [commentStructure],
+            })
+            .then(() => {
+              resolve(true);
+            });
         }
       })
       .catch((err) => {
@@ -158,4 +198,22 @@ export const getCommentsFromDatabase = async (id) => {
   } else {
     return [];
   }
+};
+
+export const getFav = async (ids) => {
+  //console.log(ids)
+  const favArray = [];
+  for (let i = 0; i < ids.length; i++) {
+    const storyRef = await db.collection("dilemmas").doc(ids[i]).get();
+    favArray.push({ ...storyRef.data(), id: ids[i] });
+  }
+  return favArray;
+  //const storyRef = await db.collection("dilemmas").doc(id).get();
+  //return storyRef.data();
+};
+
+export const getSingleFav = async (id) => {
+  const storyRef = await db.collection("dilemmas").doc(id).get();
+  const ref =  await storyRef.data();
+  return ref;
 };

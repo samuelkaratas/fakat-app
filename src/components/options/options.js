@@ -14,15 +14,18 @@ import {
 } from "../../redux/question/question.actions";
 
 import { selectChosenQuestion } from "../../redux/question/question.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const Options = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
   const chosenQuestion = useSelector(selectChosenQuestion);
   const { id } = chosenQuestion ? chosenQuestion : "";
+  const userId = currentUser ? currentUser.id : null;
 
   const yesClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, 1);
+    updateRatio(id, 1, userId);
     const comments = getCommentsFromDatabase(id);
     comments.then((data) => {
       dispatch(getComments(data));
@@ -31,7 +34,7 @@ const Options = () => {
 
   const noClickHandler = () => {
     dispatch(toggleOptions());
-    updateRatio(id, 0);
+    updateRatio(id, 0, userId);
     const comments = getCommentsFromDatabase(id);
     comments.then((data) => {
       dispatch(getComments(data));

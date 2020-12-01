@@ -1,20 +1,3 @@
-.ratio-container {
-  width: 80vw;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.outer-progress {
+.ratio-containers {
   width: 100%;
-}
-
-@media screen and (max-width: 800px) {
-  .ratio-container {
-    width: 95vw;
-    margin: 5px;
-    padding: 0px 5px;
-  }
 }

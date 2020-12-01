@@ -21,3 +21,13 @@ export const selectComments = createSelector(
   [selectQuestion],
   (question) => question.comments
 );
+
+export const selectFavComments = createSelector(
+  [selectQuestion],
+  (question) => question.favComments
+);
+
+export const selectFavLiked = createSelector(
+  [selectQuestion],
+  (question) => question.favLiked
+);

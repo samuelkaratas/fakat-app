@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   shownDilemmas: [],
   liked: undefined,
   comments: [],
+  favComments: [],
 };
 
 const questionReducer = (state = INITIAL_STATE, action) => {
@@ -20,6 +21,7 @@ const questionReducer = (state = INITIAL_STATE, action) => {
         showOptions: true,
         index: 0,
         shownDilemmas: [],
+        favLiked: true,
         liked: undefined,
         comments: [],
       };
@@ -47,10 +49,30 @@ const questionReducer = (state = INITIAL_STATE, action) => {
         ...state,
         liked: !state.liked,
       };
+    case QuestionActionTypes.LIKE_AFTER_COMMENT:
+      return {
+        ...state,
+        liked: true,
+      };
+    case QuestionActionTypes.TOGGLE_FAV_LIKE:
+      return {
+        ...state,
+        favLiked: !state.favLiked,
+      };
+    case QuestionActionTypes.RESET_FAV_LIKE:
+      return {
+        ...state,
+        favLiked: true,
+      };
     case QuestionActionTypes.GET_COMMENTS:
       return {
         ...state,
         comments: action.payload,
+      };
+    case QuestionActionTypes.GET_FAV_COMMENTS:
+      return {
+        ...state,
+        favComments: action.payload,
       };
     default:
       return state;

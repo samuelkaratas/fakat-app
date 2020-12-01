@@ -1,0 +1,13 @@
+
+.favorites-container{
+    display: flex;
+    width: 80vw;
+    flex-direction: column-reverse;
+}
+
+@media screen and (max-width: 800px) {
+    .favorites-container {
+      width: 95vw;
+    }
+  }
+  

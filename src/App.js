@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 
 import Homepage from "./pages/homepage/homepage";
 import SuggestPage from "./pages/suggest/suggest";
+import FavoritesPage from "pages/favorites/favorites";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -13,7 +14,7 @@ import {
   initializeDilemmas,
   getQuestion,
 } from "./redux/question/question.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   readSuggestions,
@@ -23,16 +24,15 @@ import {
 
 import SignInAndSignUpPage from "pages/signin-signup/signin-signup";
 
-import { setCurrentUser } from "./redux/user/user.actions";
+import { setCurrentUser, setCurrentUserId } from "./redux/user/user.actions";
 
-import { useSelector } from "react-redux";
-
-import { selectCurrentUser } from "redux/user/user.selectors";
+import { selectCurrentUserId } from "redux/user/user.selectors";
+import FavoritesDetailPage from "pages/favorites-detail/favorites-detail";
 
 function App() {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUserId = useSelector(selectCurrentUserId);
   const dispatch = useDispatch();
-  const dilemmas = readSuggestions();
+  const dilemmas = readSuggestions(currentUserId);
 
   useEffect(() => {
     dilemmas.then((data) => {
@@ -56,9 +56,10 @@ function App() {
                 ...snapShot.data(),
               })
             );
+            dispatch(setCurrentUserId(snapShot.id));
           });
         }
-
+        dispatch(setCurrentUserId(null));
         dispatch(setCurrentUser(userAuth));
       });
     };
@@ -84,9 +85,15 @@ function App() {
           exact
           path="/signin-signup"
           render={() =>
-            currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+            currentUserId ? <Redirect to="/" /> : <SignInAndSignUpPage />
           }
         />
+        <Route exact path="/favorites">
+          <FavoritesPage />
+        </Route>
+        <Route path="/favorites/:id">
+          <FavoritesDetailPage />
+        </Route>
       </Switch>
     </div>
   );

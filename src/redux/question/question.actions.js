@@ -25,3 +25,20 @@ export const getComments = (commentsArray) => ({
   type: QuestionActionTypes.GET_COMMENTS,
   payload: commentsArray,
 });
+
+export const likeAfterComment = () => ({
+  type: QuestionActionTypes.LIKE_AFTER_COMMENT,
+});
+
+export const getFavComments = (commentsArray) => ({
+  type: QuestionActionTypes.GET_FAV_COMMENTS,
+  payload: commentsArray,
+});
+
+export const toggleFavLike = () => ({
+  type: QuestionActionTypes.TOGGLE_FAV_LIKE,
+});
+
+export const resetFavLike = () => ({
+  type: QuestionActionTypes.RESET_FAV_LIKE,
+});

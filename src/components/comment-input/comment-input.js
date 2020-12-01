@@ -7,15 +7,16 @@ import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { postComment, getCommentsFromDatabase } from "../../firebase/firebase";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectChosenQuestion } from "../../redux/question/question.selectors";
+//import { selectChosenQuestion } from "../../redux/question/question.selectors";
+import { likeAfterComment } from "../../redux/question/question.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-import { getComments } from "../../redux/question/question.actions";
+import { getComments, getFavComments } from "../../redux/question/question.actions";
 
-const CommentForm = () => {
+const CommentForm = ({ id, home }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const chosenQuestion = useSelector(selectChosenQuestion);
+  //const chosenQuestion = useSelector(selectChosenQuestion);
   const [commentForm, setCommentForm] = useState({
     comment: "",
   });
@@ -30,13 +31,22 @@ const CommentForm = () => {
     event.preventDefault();
     //console.log(currentUser.displayName);
     //console.log(chosenQuestion.id)
-    await postComment(chosenQuestion.id, comment, currentUser.displayName);
+    await postComment(id, comment, currentUser.displayName);
     setCommentForm({ comment: "" });
     //console.log(success);
-    const comments = getCommentsFromDatabase(chosenQuestion.id);
-    comments.then((data) => {
-      dispatch(getComments(data));
-    });
+    if(home) {
+      const comments = getCommentsFromDatabase(id);
+      comments.then((data) => {
+        dispatch(getComments(data));
+        dispatch(likeAfterComment());
+      });
+    } else {
+      const getComments = getCommentsFromDatabase(id);
+      getComments.then((data) => {
+        dispatch(getFavComments(data));
+      });
+    }
+    
   };
 
   return (

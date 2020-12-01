@@ -36,6 +36,9 @@ const Header = () => {
             <Link to="/suggest">
               <Nav.Link href="/suggest">Dilemma Gönder</Nav.Link>
             </Link>
+            <Link to="/favorites">
+              <Nav.Link href="/favorites">Favorilerim</Nav.Link>
+            </Link>
             {currentUser ? (
               <Nav.Link
                 onClick={() => {

@@ -4,13 +4,13 @@ import "./ratio.css";
 
 import ProgressBar from "react-bootstrap/ProgressBar";
 
-import { useSelector } from "react-redux";
-import { selectChosenQuestion } from "../../redux/question/question.selectors";
+//import { useSelector } from "react-redux";
+//import { selectChosenQuestion } from "../../redux/question/question.selectors";
 
-const Ratio = () => {
+const Ratio = ({chosenQuestion}) => {
   const [acceptPer, setAcceptPer] = useState(60);
 
-  const chosenQuestion = useSelector(selectChosenQuestion);
+  //const chosenQuestion = useSelector(selectChosenQuestion);
   const { yesCount, noCount } = chosenQuestion;
   useEffect(() => {
     const percentage = Math.round((yesCount / (yesCount + noCount)) * 100);
@@ -18,7 +18,7 @@ const Ratio = () => {
   }, [yesCount, noCount]);
 
   return (
-    <div className="ratio-container">
+    <div className="ratio-containers">
       <ProgressBar className="outer-progress">
         <ProgressBar
           variant="success"
