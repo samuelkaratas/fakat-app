@@ -11,10 +11,10 @@ const Dilemma = ({ home, id, liked, chosenQuestion, showOptions }) => {
   
   const firstOption = chosenQuestion
     ? chosenQuestion.firstOption
-    : "Woooww... Dilemmalar bitti";
+    : "Woooww... Fakatlar bitti";
   const secondOption = chosenQuestion
     ? chosenQuestion.secondOption
-    : "Öneri kısmından dilemmalarınızı gönderebilirsiniz";
+    : "Aklınıza gelen ikilemleri fakat gönder sayfasından gönderebilirsiniz";
 
   return firstOption ? (
     <div className="dilemma-container">

@@ -201,11 +201,13 @@ export const getCommentsFromDatabase = async (id) => {
 };
 
 export const getFav = async (ids) => {
-  //console.log(ids)
+  //console.log(ids.length)
   const favArray = [];
-  for (let i = 0; i < ids.length; i++) {
-    const storyRef = await db.collection("dilemmas").doc(ids[i]).get();
-    favArray.push({ ...storyRef.data(), id: ids[i] });
+  if(ids) {
+    for (let i = 0; i < ids.length; i++) {
+      const storyRef = await db.collection("dilemmas").doc(ids[i]).get();
+      favArray.push({ ...storyRef.data(), id: ids[i] });
+    }
   }
   return favArray;
   //const storyRef = await db.collection("dilemmas").doc(id).get();

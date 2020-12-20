@@ -34,7 +34,7 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
             <Link to="/suggest">
-              <Nav.Link href="/suggest">Dilemma Gönder</Nav.Link>
+              <Nav.Link href="/suggest">Fakat Gönder</Nav.Link>
             </Link>
             <Link to="/favorites">
               <Nav.Link href="/favorites">Favorilerim</Nav.Link>

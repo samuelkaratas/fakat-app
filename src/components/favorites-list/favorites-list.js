@@ -36,11 +36,15 @@ const FavoritesList = () => {
   return (
     <div>
       {currentUserId ? (
-        <div className="favorites-container">
-          {favData.map((data, ind) => (
-            <Favourite key={ind} data={data} />
-          ))}
-        </div>
+        favData.length ? (
+          <div className="favorites-container">
+            {favData.map((data, ind) => (
+              <Favourite key={ind} data={data} />
+            ))}
+          </div>
+        ) : (
+          <p>Favorileriniz boş</p>
+        )
       ) : (
         <div>
           <p>Favorilerini görebilmek için giriş yap.</p>
